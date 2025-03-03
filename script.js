@@ -1,12 +1,11 @@
 let answers = "";
-let key = "";
 let choices = ["[Correct]", "[Incorrect: Misreading of the question]", "[Incorrect: Blatantly incorrect / distractor]", "[Incorrect: Literal reference to the text]"];
-let cat1 = ["1A", "1B", "1C", "1D", "1E"];
-let cat2 = ["2A", "2B", "2C"];
-let cat3 = ["3A", "3B", "3C", "3D", "3E", "3F"];
-let cat4 = ["4A", "4B", "4C", "4D"];
-let cat5 = ["5A", "5B", "5C", "5D"];
-let cat6 = ["6A", "6B", "6C", "6D"];
+let cat1 = ["1.A", "1.B", "1.C", "1.D", "1.E"];
+let cat2 = ["2.A", "2.B", "2.C"];
+let cat3 = ["3.A", "3.B", "3.C", "3.D", "3.E", "3.F"];
+let cat4 = ["4.A", "4.B", "4.C", "4.D"];
+let cat5 = ["5.A", "5.B", "5.C", "5.D"];
+let cat6 = ["6.A", "6.B", "6.C", "6.D"];
 let tempText = "";
 
 
@@ -25,11 +24,11 @@ let c5num = 0;
 let c6num = 0;
 
 var button = document.querySelector("button")
+var tableKey = document.querySelector("#key");
 button.addEventListener("click", runCode);
 
 function runCode(){
   answers = "";
-  key = "";
   c1num = 0;
   c2num = 0;
   c3num = 0;
@@ -37,6 +36,7 @@ function runCode(){
   c5num = 0;
   c6num = 0;
   for(let i = 1; i<16; i++){
+    key.rows[i].cells[0].innerText = i;
     tempText = "";
     tempText += i + ". [Write Question Here]\n";
     shuffleArray(choices);
@@ -44,13 +44,14 @@ function runCode(){
       tempText += "\t" + abcs(k) + ". ";
       tempText += choices[k] + "\n";
       if(choices[k] == "[Correct]"){
-        key += i + ". Correct Answer: " + abcs(k) + "\n    Category: " + catGen() + "\n" + "    Why it's correct: [explanation]\n";
+        key.rows[i].cells[1].innerText = abcs(k);
+        key.rows[i].cells[2].innerText = catGen();
+        key.rows[i].cells[3].innerText = "[Explanation]";
       }
     }
     answers+=tempText;
   }
   document.querySelector("#questions").innerText = answers;
-  document.querySelector("#key").innerText = key;
 }
 
 runCode();
