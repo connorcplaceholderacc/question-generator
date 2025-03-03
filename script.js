@@ -46,7 +46,7 @@ function runCode(){
       if(choices[k] == "[Correct]"){
         key.rows[i].cells[1].innerText = abcs(k);
         key.rows[i].cells[2].innerText = catGen();
-        key.rows[i].cells[3].innerText = "[Explanation]";
+        key.rows[i].cells[3].innerText = "[Explanation why this answer is the most correct]";
       }
     }
     answers+=tempText;
